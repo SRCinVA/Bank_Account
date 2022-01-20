@@ -7,4 +7,13 @@ class Account:
             # this will save the value of the int from the text file in the instance variable self.balance.
             # you'll need to cast the file.read as an int (it's otherwise a string).
 
-    account = Account("balance.txt") # for 'self,' Python will automatically pass the object instance.
+    def withdraw(self, amount):
+        self.balance = self.balance - amount
+
+    def deposit(self, amount):  # both 'amount' variables are local, so they can have the same name. 
+        self.balance = self.balance + amount
+
+account = Account("balance.txt") # for 'self,' Python will automatically pass the object instance.
+print(account.balance)   # uses dot notation to point to the object ("account") that holds the balance attribute 
+account.withdraw(100)  # the object instance is passed automatically, but we have to supply the amount.
+print(account.balance)  
