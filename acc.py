@@ -20,14 +20,18 @@ class Account:
 
 class Checking(Account): # need to pass the base class in as an argument
 
-    def __init__(self, filepath):
+    def __init__(self, filepath, fee):
         Account.__init__(self, filepath)  # this creates a minimal object that inherits from the Account class
                                             # you need to pass the same parameters in the parent and child lasses (it seeems)
+        self.fee = fee                      # Transform this fee into an instance variable
 
-checking=Checking("balance.txt")
-checking.deposit(10)
-print(checking.balance)
+    def transfer(self, amount, fee):
+        self.balance = self.balance - amount - self.fee
 
+checking=Checking("balance.txt", 2) # it seems self is automatically passed as the instance is created
+checking.transfer(17,2)
+print(checking.balance)  # prints out the balance instance variable of the base Class
+checking.commit()        # commits the change of the operation to balance.txt
 
 # remember CMD + / for multi-line comments
 
