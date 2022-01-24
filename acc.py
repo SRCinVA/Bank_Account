@@ -20,6 +20,9 @@ class Account:
 
 class Checking(Account): # need to pass the base class in as an argument
 
+    type="checking" # a class variable is declared outside the methods contained by that class
+                    # they are shared by all instances of that class
+
     def __init__(self, filepath, fee):
         Account.__init__(self, filepath)  # this creates a minimal object that inherits from the Account class
                                             # you need to pass the same parameters in the parent and child lasses (it seeems)
@@ -28,10 +31,17 @@ class Checking(Account): # need to pass the base class in as an argument
     def transfer(self, amount, fee):
         self.balance = self.balance - amount - self.fee
 
-checking=Checking("balance.txt", 2) # it seems self is automatically passed as the instance is created
-checking.transfer(17,2)
-print(checking.balance)  # prints out the balance instance variable of the base Class
-checking.commit()        # commits the change of the operation to balance.txt
+jack_checking=Checking("jack.txt", 2) # it seems self is automatically passed as the instance is created
+jack_checking.transfer(20,2)
+print(jack_checking.balance)  # prints out the balance instance variable of the base Class
+jack_checking.commit()        # commits the change of the operation to balance.txt
+
+# separate instance
+john_checking=Checking("john.txt", 2) # it seems self is automatically passed as the instance is created
+john_checking.transfer(10,2)
+print(john_checking.balance)  # prints out the balance instance variable of the base Class
+john_checking.commit() 
+
 
 # remember CMD + / for multi-line comments
 
